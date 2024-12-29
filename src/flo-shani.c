@@ -20,6 +20,7 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
+// Fast Loop Optimization for SHA-NI 一种针对SHA系列算法进行优化的技术，使用了SHA指令集加速的硬件特性来提升性能
 #include "flo-shani.h"
 
 #define LOAD(X)       _mm_load_si128((__m128i const *)X)

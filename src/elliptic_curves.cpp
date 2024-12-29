@@ -1,5 +1,6 @@
 #include "elliptic_curves.h"
 F a,B;
+//椭圆曲线上函数
 
 vector<F> add_points(F x1,F x2, F y1, F y2,F z1,F z2){
 	F inverse;

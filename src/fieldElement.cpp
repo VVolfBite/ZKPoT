@@ -3,6 +3,8 @@
 #include <chrono>
 #include <immintrin.h>
 
+// 为了加密整出来的运算类
+
 namespace virgo {
     const unsigned long long fieldElement::mod = 2305843009213693951LL;
     const unsigned long long fieldElementPacked::mod = 2305843009213693951LL;

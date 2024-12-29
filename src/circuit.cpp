@@ -14,6 +14,7 @@ layeredCircuit layeredCircuit::readFromStream(char *)
     return layeredCircuit();
 }
 
+// 生成一个随机化的电路
 layeredCircuit layeredCircuit::randomize(int layerNum, int eachLayer)
 {
     layeredCircuit c;
@@ -54,6 +55,7 @@ int count_size(layer i_layer){
     return size;
 }
 
+// 初始化电路中每一层的相关数据结构，并为每个门（gate）建立父子关系
 void layeredCircuit::subsetInit() {
     for (int i = 0; i < size; ++i) {
         circuit[i].dadBitLength.resize(i, -1);

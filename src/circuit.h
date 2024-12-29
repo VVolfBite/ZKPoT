@@ -7,8 +7,8 @@
 #include "inputCircuit.hpp"
 #include "config_pc.hpp"
 
-// Each gate has : type=ty, an l id of lower layer u its gate id
-// v gate id of i-1 layer
+// 每个门包含：类型 ty，当前层 l，当前层门号 u，上一层门号 v , c 门的系数
+
 
 class gate {
 public:
@@ -41,6 +41,7 @@ public:
 	
 };
 
+// 层级类：表示电路中的一层
 // layer has a vector of gates, a bit length (log(len(gates)))
 // the size = len(gates)
 
@@ -57,6 +58,7 @@ public:
 	int maxDadBitLength;        // max subset bit length
 };
 
+// 层级电路
 class layeredCircuit {
 public:
 	vector<layer> circuit;
