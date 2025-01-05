@@ -83,39 +83,39 @@ set_target_properties(mcl::mclbn384_256 PROPERTIES
   INTERFACE_LINK_LIBRARIES "mcl::mcl"
 )
 
-# Import target "mcl::mcl" for configuration "Release"
-set_property(TARGET mcl::mcl APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+# Import target "mcl::mcl" for configuration "Debug"
+set_property(TARGET mcl::mcl APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(mcl::mcl PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/home/vvolfbite/Documents/kaizen/build/lib/libmcl.so.1.73"
-  IMPORTED_SONAME_RELEASE "libmcl.so.1"
+  IMPORTED_LOCATION_DEBUG "/home/vvolfbite/Documents/kaizen/build/lib/libmcl.so.1.73"
+  IMPORTED_SONAME_DEBUG "libmcl.so.1"
   )
 
-# Import target "mcl::mcl_st" for configuration "Release"
-set_property(TARGET mcl::mcl_st APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+# Import target "mcl::mcl_st" for configuration "Debug"
+set_property(TARGET mcl::mcl_st APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(mcl::mcl_st PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "ASM;CXX"
-  IMPORTED_LOCATION_RELEASE "/home/vvolfbite/Documents/kaizen/build/lib/libmcl.a"
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "ASM;CXX"
+  IMPORTED_LOCATION_DEBUG "/home/vvolfbite/Documents/kaizen/build/lib/libmcl.a"
   )
 
-# Import target "mcl::mclbn256" for configuration "Release"
-set_property(TARGET mcl::mclbn256 APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+# Import target "mcl::mclbn256" for configuration "Debug"
+set_property(TARGET mcl::mclbn256 APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(mcl::mclbn256 PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/home/vvolfbite/Documents/kaizen/build/lib/libmclbn256.so.1.73"
-  IMPORTED_SONAME_RELEASE "libmclbn256.so.1"
+  IMPORTED_LOCATION_DEBUG "/home/vvolfbite/Documents/kaizen/build/lib/libmclbn256.so.1.73"
+  IMPORTED_SONAME_DEBUG "libmclbn256.so.1"
   )
 
-# Import target "mcl::mclbn384" for configuration "Release"
-set_property(TARGET mcl::mclbn384 APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+# Import target "mcl::mclbn384" for configuration "Debug"
+set_property(TARGET mcl::mclbn384 APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(mcl::mclbn384 PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/home/vvolfbite/Documents/kaizen/build/lib/libmclbn384.so.1.73"
-  IMPORTED_SONAME_RELEASE "libmclbn384.so.1"
+  IMPORTED_LOCATION_DEBUG "/home/vvolfbite/Documents/kaizen/build/lib/libmclbn384.so.1.73"
+  IMPORTED_SONAME_DEBUG "libmclbn384.so.1"
   )
 
-# Import target "mcl::mclbn384_256" for configuration "Release"
-set_property(TARGET mcl::mclbn384_256 APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+# Import target "mcl::mclbn384_256" for configuration "Debug"
+set_property(TARGET mcl::mclbn384_256 APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(mcl::mclbn384_256 PROPERTIES
-  IMPORTED_LOCATION_RELEASE "/home/vvolfbite/Documents/kaizen/build/lib/libmclbn384_256.so.1.73"
-  IMPORTED_SONAME_RELEASE "libmclbn384_256.so.1"
+  IMPORTED_LOCATION_DEBUG "/home/vvolfbite/Documents/kaizen/build/lib/libmclbn384_256.so.1.73"
+  IMPORTED_SONAME_DEBUG "libmclbn384_256.so.1"
   )
 
 # This file does not depend on other imported targets which have

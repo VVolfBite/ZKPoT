@@ -223,19 +223,19 @@ src/CMakeFiles/main.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
 	cd /home/vvolfbite/Documents/kaizen/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vvolfbite/Documents/kaizen/src/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
-src/CMakeFiles/main.dir/main2.cpp.o: src/CMakeFiles/main.dir/flags.make
-src/CMakeFiles/main.dir/main2.cpp.o: ../src/main2.cpp
-src/CMakeFiles/main.dir/main2.cpp.o: src/CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vvolfbite/Documents/kaizen/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/main.dir/main2.cpp.o"
-	cd /home/vvolfbite/Documents/kaizen/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/main.dir/main2.cpp.o -MF CMakeFiles/main.dir/main2.cpp.o.d -o CMakeFiles/main.dir/main2.cpp.o -c /home/vvolfbite/Documents/kaizen/src/main2.cpp
+src/CMakeFiles/main.dir/main1.cpp.o: src/CMakeFiles/main.dir/flags.make
+src/CMakeFiles/main.dir/main1.cpp.o: ../src/main1.cpp
+src/CMakeFiles/main.dir/main1.cpp.o: src/CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vvolfbite/Documents/kaizen/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object src/CMakeFiles/main.dir/main1.cpp.o"
+	cd /home/vvolfbite/Documents/kaizen/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/main.dir/main1.cpp.o -MF CMakeFiles/main.dir/main1.cpp.o.d -o CMakeFiles/main.dir/main1.cpp.o -c /home/vvolfbite/Documents/kaizen/src/main1.cpp
 
-src/CMakeFiles/main.dir/main2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main2.cpp.i"
-	cd /home/vvolfbite/Documents/kaizen/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vvolfbite/Documents/kaizen/src/main2.cpp > CMakeFiles/main.dir/main2.cpp.i
+src/CMakeFiles/main.dir/main1.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main1.cpp.i"
+	cd /home/vvolfbite/Documents/kaizen/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vvolfbite/Documents/kaizen/src/main1.cpp > CMakeFiles/main.dir/main1.cpp.i
 
-src/CMakeFiles/main.dir/main2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main2.cpp.s"
-	cd /home/vvolfbite/Documents/kaizen/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vvolfbite/Documents/kaizen/src/main2.cpp -o CMakeFiles/main.dir/main2.cpp.s
+src/CMakeFiles/main.dir/main1.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main1.cpp.s"
+	cd /home/vvolfbite/Documents/kaizen/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vvolfbite/Documents/kaizen/src/main1.cpp -o CMakeFiles/main.dir/main1.cpp.s
 
 src/CMakeFiles/main.dir/merkle_tree.cpp.o: src/CMakeFiles/main.dir/flags.make
 src/CMakeFiles/main.dir/merkle_tree.cpp.o: ../src/merkle_tree.cpp
@@ -390,7 +390,7 @@ main_OBJECTS = \
 "CMakeFiles/main.dir/linear_code_encode.cpp.o" \
 "CMakeFiles/main.dir/lookups.cpp.o" \
 "CMakeFiles/main.dir/main.cpp.o" \
-"CMakeFiles/main.dir/main2.cpp.o" \
+"CMakeFiles/main.dir/main1.cpp.o" \
 "CMakeFiles/main.dir/merkle_tree.cpp.o" \
 "CMakeFiles/main.dir/mimc.cpp.o" \
 "CMakeFiles/main.dir/pol_verifier.cpp.o" \
@@ -416,7 +416,7 @@ src/main: src/CMakeFiles/main.dir/flo-shani.c.o
 src/main: src/CMakeFiles/main.dir/linear_code_encode.cpp.o
 src/main: src/CMakeFiles/main.dir/lookups.cpp.o
 src/main: src/CMakeFiles/main.dir/main.cpp.o
-src/main: src/CMakeFiles/main.dir/main2.cpp.o
+src/main: src/CMakeFiles/main.dir/main1.cpp.o
 src/main: src/CMakeFiles/main.dir/merkle_tree.cpp.o
 src/main: src/CMakeFiles/main.dir/mimc.cpp.o
 src/main: src/CMakeFiles/main.dir/pol_verifier.cpp.o

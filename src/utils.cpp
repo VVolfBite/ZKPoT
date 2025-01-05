@@ -540,7 +540,7 @@ vector<vector<F>> get_poly(int size){
 vector<F> lookup_prod(vector<vector<F>> tables, F num){
     char buff[256];
     num = F(0)-num;
-    int n;
+    int n = 0;
     for(int i = 60; i >= 0; i--){
         if(num.getBit(i)){
             n = i;
@@ -602,14 +602,13 @@ F lookup(vector<vector<F>> tables, F num){
     char buff[256];
     num = F(0)-num;
 
-    int n;
+    int n = 0;
     for(int i = 60; i >= 0; i--){
         if(num.getBit(i)){
             n = i;
             break;
         }
     }
-    //int n = num.getStr(buff,256,2);
     int counter = 0;
     int level = 0;
     F prod = F(1);

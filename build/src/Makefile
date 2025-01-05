@@ -439,29 +439,29 @@ main.cpp.s:
 	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-main2.o: main2.cpp.o
-.PHONY : main2.o
+main1.o: main1.cpp.o
+.PHONY : main1.o
 
 # target to build an object file
-main2.cpp.o:
-	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main2.cpp.o
-.PHONY : main2.cpp.o
+main1.cpp.o:
+	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main1.cpp.o
+.PHONY : main1.cpp.o
 
-main2.i: main2.cpp.i
-.PHONY : main2.i
+main1.i: main1.cpp.i
+.PHONY : main1.i
 
 # target to preprocess a source file
-main2.cpp.i:
-	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main2.cpp.i
-.PHONY : main2.cpp.i
+main1.cpp.i:
+	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main1.cpp.i
+.PHONY : main1.cpp.i
 
-main2.s: main2.cpp.s
-.PHONY : main2.s
+main1.s: main1.cpp.s
+.PHONY : main1.s
 
 # target to generate assembly for a file
-main2.cpp.s:
-	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main2.cpp.s
-.PHONY : main2.cpp.s
+main1.cpp.s:
+	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main1.cpp.s
+.PHONY : main1.cpp.s
 
 merkle_tree.o: merkle_tree.cpp.o
 .PHONY : merkle_tree.o
@@ -749,9 +749,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... main2.o"
-	@echo "... main2.i"
-	@echo "... main2.s"
+	@echo "... main1.o"
+	@echo "... main1.i"
+	@echo "... main1.s"
 	@echo "... merkle_tree.o"
 	@echo "... merkle_tree.i"
 	@echo "... merkle_tree.s"

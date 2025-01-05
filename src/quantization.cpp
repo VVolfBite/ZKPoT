@@ -65,7 +65,7 @@ float dequantize(F num,int depth){
 	}
 	
 	if(num.getBit(60)){
-		num = F(0) - num;
+	num = F(0) - num;
 		r_num = num.toint128();
 		r_num = r_num/div;
 		r_num = -r_num;

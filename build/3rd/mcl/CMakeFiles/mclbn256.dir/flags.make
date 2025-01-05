@@ -6,5 +6,5 @@ CXX_DEFINES = -DMCLBN_NO_AUTOLINK -DMCL_NO_AUTOLINK -DMCL_USE_LLVM=1 -Dmclbn256_
 
 CXX_INCLUDES = -I/home/vvolfbite/Documents/kaizen/src -I/home/vvolfbite/Documents/kaizen/3rd -I/home/vvolfbite/Documents/kaizen/3rd/mcl/include -I/home/vvolfbite/Documents/kaizen/lib
 
-CXX_FLAGS = -w -march=native -faligned-new -mavx -lgmp -msha -O3 -DNDEBUG -fPIC -Wall -Wextra -Wformat=2 -Wcast-qual -Wcast-align -Wwrite-strings -Wfloat-equal -Wpointer-arith -DNDEBUG -O3 -fPIC -std=c++11
+CXX_FLAGS = -w -march=native -faligned-new -mavx -lgmp -msha -g -fPIC -Wall -Wextra -Wformat=2 -Wcast-qual -Wcast-align -Wwrite-strings -Wfloat-equal -Wpointer-arith -DNDEBUG -O3 -fPIC -std=c++11
 

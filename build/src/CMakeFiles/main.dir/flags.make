@@ -7,11 +7,11 @@ C_DEFINES = -DMCLBN_NO_AUTOLINK -DMCL_NO_AUTOLINK -DMCL_USE_LLVM=1
 
 C_INCLUDES = -I/home/vvolfbite/Documents/kaizen/src -I/home/vvolfbite/Documents/kaizen/3rd -I/home/vvolfbite/Documents/kaizen/3rd/mcl/include -I/home/vvolfbite/Documents/kaizen/lib -I/home/vvolfbite/Documents/kaizen/src/.
 
-C_FLAGS = -w -march=native -faligned-new -mavx -lgmp -msha -O3 -DNDEBUG
+C_FLAGS = -w -march=native -faligned-new -mavx -lgmp -msha -g
 
 CXX_DEFINES = -DMCLBN_NO_AUTOLINK -DMCL_NO_AUTOLINK -DMCL_USE_LLVM=1
 
 CXX_INCLUDES = -I/home/vvolfbite/Documents/kaizen/src -I/home/vvolfbite/Documents/kaizen/3rd -I/home/vvolfbite/Documents/kaizen/3rd/mcl/include -I/home/vvolfbite/Documents/kaizen/lib -I/home/vvolfbite/Documents/kaizen/src/.
 
-CXX_FLAGS = -w -march=native -faligned-new -mavx -lgmp -msha -O3 -DNDEBUG -std=gnu++14
+CXX_FLAGS = -w -march=native -faligned-new -mavx -lgmp -msha -g -std=gnu++14
 

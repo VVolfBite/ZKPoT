@@ -19,7 +19,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/vvolfbite/Documents/kaizen/src/linear_code_encode.cpp" "src/CMakeFiles/main.dir/linear_code_encode.cpp.o" "gcc" "src/CMakeFiles/main.dir/linear_code_encode.cpp.o.d"
   "/home/vvolfbite/Documents/kaizen/src/lookups.cpp" "src/CMakeFiles/main.dir/lookups.cpp.o" "gcc" "src/CMakeFiles/main.dir/lookups.cpp.o.d"
   "/home/vvolfbite/Documents/kaizen/src/main.cpp" "src/CMakeFiles/main.dir/main.cpp.o" "gcc" "src/CMakeFiles/main.dir/main.cpp.o.d"
-  "/home/vvolfbite/Documents/kaizen/src/main2.cpp" "src/CMakeFiles/main.dir/main2.cpp.o" "gcc" "src/CMakeFiles/main.dir/main2.cpp.o.d"
+  "/home/vvolfbite/Documents/kaizen/src/main1.cpp" "src/CMakeFiles/main.dir/main1.cpp.o" "gcc" "src/CMakeFiles/main.dir/main1.cpp.o.d"
   "/home/vvolfbite/Documents/kaizen/src/merkle_tree.cpp" "src/CMakeFiles/main.dir/merkle_tree.cpp.o" "gcc" "src/CMakeFiles/main.dir/merkle_tree.cpp.o.d"
   "/home/vvolfbite/Documents/kaizen/src/mimc.cpp" "src/CMakeFiles/main.dir/mimc.cpp.o" "gcc" "src/CMakeFiles/main.dir/mimc.cpp.o.d"
   "/home/vvolfbite/Documents/kaizen/src/pol_verifier.cpp" "src/CMakeFiles/main.dir/pol_verifier.cpp.o" "gcc" "src/CMakeFiles/main.dir/pol_verifier.cpp.o.d"
