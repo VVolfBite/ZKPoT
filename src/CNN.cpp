@@ -286,6 +286,7 @@ vector<F> index_w(vector<vector<F>> w, int n,int real_n){
 	return vec;
 }
 
+
 struct relu_layer _relu_layer(vector<F> input){
 	//printf("RELU : %d\n",input.size() );
 	struct relu_layer relu_data;
@@ -494,7 +495,7 @@ struct convolution_layer conv(vector<vector<vector<vector<F>>>> input,vector<vec
 			vector<F> arr = index_x(input[i][j]);
 			
 			arr.resize(2*arr.size(),F(0));
-			fft(arr,(int)log2(arr.size()),false);
+ 			fft(arr,(int)log2(arr.size()),false);
 			conv_data.fft_X.push_back(arr);	
 			arr.clear();
 		}
@@ -637,34 +638,27 @@ struct convolution_layer conv(vector<vector<vector<vector<F>>>> input,vector<vec
 	}
 	
 	//conv_data.Out = conv_data.U;
+
+	// if(avg){
+	// 	vector<vector<vector<F>>> r = avg_pool_2(conv_data.U,conv_data.chout,conv_data.n - conv_data.w + 1,conv_data.n,conv_data.window);
+	// 	conv_data.Out = r[0];
+	// 	conv_data.Sum = r[1];
+	// 	conv_data.Remainder = r[2];
+	// }else{
+	// 	conv_data.Out = _flatten_layer(conv_data.U,n);
+	// }
 	
-	/*
-	if(!avg){
-		conv_data.Out = _flatten_layer(conv_data.U,n);
-	}else{
-	}
-	*/
-	/*
-	if(avg){
-		vector<vector<vector<F>>> r = avg_pool_2(conv_data.U,conv_data.chout,conv_data.n - conv_data.w + 1,conv_data.n,conv_data.window);
-		conv_data.Out = r[0];
-		conv_data.Sum = r[1];
-		conv_data.Remainder = r[2];
-	}else{
-		conv_data.Out = _flatten_layer(conv_data.U,n);
-	}
+	// int d = (conv_data.n - conv_data.w + 1);
+	// if(avg){
+	// 	d = d/2;
+	// }
+	// int pad_window_bits = (int)log2(d);
+	// if(1<<pad_window_bits != d){
+	// 	pad_window_bits++;
+	// }
 	
-	int d = (conv_data.n - conv_data.w + 1);
-	if(avg){
-		d = d/2;
-	}
-	int pad_window_bits = (int)log2(d);
-	if(1<<pad_window_bits != d){
-		pad_window_bits++;
-	}
-	
-	conv_data.padded_w = 1<<pad_window_bits;
-	*/
+	// conv_data.padded_w = 1<<pad_window_bits;
+
 	return conv_data;
 }
 
@@ -697,7 +691,7 @@ struct convolutional_network init_network(int selected_model,int batch_size,int 
 			}
 		}
 		net.Weights = add_dense(net.Weights,128,32);
-		net.Weights = add_dense(net.Weights,32,16);
+		net.Weights = add_dense(net.Weights,32,10);
 	}else if(model == VGG){
 		//62
 		//60
@@ -902,16 +896,16 @@ void check_relu(vector<vector<vector<vector<F>>>> &input){
 }
 
 struct convolutional_network feed_forward(vector<vector<vector<vector<F>>>> &X, struct convolutional_network net, int channels){
-	vector<vector<vector<vector<F>>>> input;
-	if(model == VGG){
-		input = init_input(64,channels);
-	}
-	else if(model == AlexNet || model == mAlexNet){
-		input = init_input(64,channels);
-	}	
-	else{
-		input = init_input(32,channels);
-	}
+	vector<vector<vector<vector<F>>>> input = X;
+	// if(model == VGG){
+	// 	input = init_input(64,channels);
+	// }
+	// else if(model == AlexNet || model == mAlexNet){
+	// 	input = init_input(64,channels);
+	// }	
+	// else{
+	// 	input = init_input(32,channels);
+	// }
 	
 	vector<vector<vector<vector<F>>>> Z_conv;
 	vector<vector<F>> Z(batch);
@@ -1536,7 +1530,7 @@ struct avg_layer_backprop avg_pool_der(vector<vector<vector<vector<F>>>> &derr,i
 
 
 
-struct convolutional_network back_propagation( struct convolutional_network net){
+struct convolutional_network back_propagation( struct convolutional_network net, vector<vector<F>> &out_der){
 	struct convolution_layer_backprop conv_der;
 	struct dense_layer_backprop dense_der;
 	struct relu_layer_backprop relu_der;
@@ -1544,10 +1538,11 @@ struct convolutional_network back_propagation( struct convolutional_network net)
 	int in_size;
 	//printf("Calculating Backpropagation Circuit\n");
 	vector<vector<vector<vector<F>>>> der(batch),dx(batch);
-	vector<vector<F>> out_der(batch),dense_dx(batch);
-	for(int i = 0; i < batch; i++){
-		out_der[i] = initialize_filter(16);
-	}
+	vector<vector<F>> dense_dx(batch);
+	// out_der(batch),
+	// for(int i = 0; i < batch; i++){
+	// 	out_der[i] = initialize_filter(10);
+	// }
 
 	for(int i = net.Weights.size()-1; i >= 0; i--){
 		dense_der = dense_backprop(out_der,net.fully_connected[i]);
@@ -1662,4 +1657,102 @@ struct convolutional_network back_propagation( struct convolutional_network net)
 	}
 	return net;
 
+}
+
+
+
+
+// predict part
+
+vector<int> predict(vector<vector<vector<vector<F>>>> &X, struct convolutional_network net, int channels) {
+    // 使用前向传播得到网络输出
+    net = feed_forward(X, net, channels);
+
+    // 获取网络最后一层的输出（通常是 fully connected layer 的输出）
+    vector<vector<F>> final_output = net.fully_connected.back().Z_new;
+
+    // 获取预测结果
+    vector<int> predictions;
+    for (int i = 0; i < final_output.size(); i++) {
+        // 找到 real 部分最大的索引
+        int predicted_class = 0;
+        double max_real = final_output[i][0].real; // 初始化为第一个元素的 real 部分
+        for (int j = 1; j < final_output[i].size(); j++) {
+            if (final_output[i][j].real > max_real) {
+                max_real = final_output[i][j].real;
+                predicted_class = j;
+            }
+        }
+        predictions.push_back(predicted_class);
+    }
+
+    return predictions;
+}
+
+
+// loss
+// // Compute Cross-Entropy Loss
+// float compute_loss(const std::vector<std::vector<float>>& output, const std::vector<int>& label) {
+//     // Check that output and label sizes match
+//     if (output.size() != label.size()) {
+//         throw std::invalid_argument("Output and label sizes do not match!");
+//     }
+
+//     float loss = 0.0f;
+//     size_t batch_size = output.size();
+
+//     for (size_t i = 0; i < batch_size; ++i) {
+//         int true_label = label[i]; // True class index
+//         if (true_label < 0 || true_label >= output[i].size()) {
+//             throw std::out_of_range("Label index out of range!");
+//         }
+
+//         float predicted_prob = output[i][true_label]; // Probability for the true class
+//         loss -= std::log(predicted_prob + 1e-9f);     // Add small epsilon to avoid log(0)
+//     }
+
+//     return loss / batch_size; // Average loss over the batch
+// }
+
+vector<vector<F>> compute_loss_and_gradients(const vector<vector<F>>& output, const vector<F>& labels) {
+    vector<vector<F>> quantized_gradients;  // 用于存储每个样本的梯度
+    double total_loss = 0.0;
+    int batch_size = output.size();
+
+    for (int i = 0; i < batch_size; i++) {
+        const vector<F>& predictions = output[i];
+        int true_label = labels[i].real;
+
+        // 数值稳定的 softmax 计算
+        double max_value = predictions[0].real;
+        for (const F& value : predictions) {
+            max_value = max_value > value.real? max_value: value.real;
+        }
+
+        double sum_exp = 0.0;
+        for (const F& value : predictions) {
+            sum_exp += exp(value.real - max_value);
+        }
+
+        double softmax_prob = exp(predictions[true_label].real - max_value) / sum_exp;
+
+        // 计算交叉熵损失
+        total_loss += -log(softmax_prob);
+
+        // 计算每个预测的梯度
+        vector<F> sample_gradients;
+        for (int j = 0; j < predictions.size(); j++) {
+            double softmax_j = exp(predictions[j].real - max_value) / sum_exp;
+            float gradient = softmax_j - (j == true_label ? 1.0 : 0.0);
+            sample_gradients.push_back(quantize(gradient));  // 假设有 quantize 函数
+        }
+
+        // 将当前样本的梯度加入结果
+        quantized_gradients.push_back(sample_gradients);
+    }
+
+    // 打印总损失
+    printf("Total Loss: %f\n", total_loss);
+
+    return quantized_gradients;
 }

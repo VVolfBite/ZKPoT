@@ -22,7 +22,11 @@
 #include "config_pc.hpp"
 #include "poly_commit.h"
 #include "lookups.h"
+#include <iostream>
+#include "mnist/mnist_reader.hpp"
 #include <unistd.h>
+
+#define MNIST_DATA_LOCATION "/home/vvolfbite/Documents/kaizen/dataset/"
 
 extern int partitions;
 
@@ -419,6 +423,8 @@ struct proof prove_ifft_matrix(vector<vector<F>> M, vector<F> r, F previous_sum)
     {
         printf("Error in ifft\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
 
     Pr.randomness.push_back(r1);
@@ -473,6 +479,8 @@ struct proof prove_fft_matrix(vector<vector<F>> M, vector<F> r, F previous_sum)
     {
         printf("Error in fft\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     Pr.randomness.push_back(r1);
     Pr.randomness.push_back(r2);
@@ -508,6 +516,8 @@ struct proof _prove_matrix2matrix(vector<vector<F>> M1, vector<vector<F>> M2, ve
         {
             printf("Error in Matrix2Matrix multiplication\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
             // printf("Sumcheck Ok, %d\n", V[0].size());
         }
         Pr.type = MATMUL_PROOF;
@@ -521,6 +531,8 @@ struct proof _prove_matrix2matrix(vector<vector<F>> M1, vector<vector<F>> M2, ve
         {
             printf("Error in Matrix2Matrix multiplication\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         Pr.type = -1;
     }
@@ -605,6 +617,8 @@ struct proof _prove_bit_decomposition(vector<F> bits, vector<F> r1, F previous_s
     {
         printf("Error in bit_decomposition\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     vector<F> r2 = generate_randomness(int(log2(bits.size())), r1[r1.size() - 1]);
     vector<F> beta;
@@ -772,6 +786,8 @@ struct feedforward_proof insert_poly(string key, vector<F> poly, vector<F> eval_
     {
         printf("Error in %s\n", key);
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     return P;
 }
@@ -793,6 +809,8 @@ struct feedforward_proof update_poly(string key, vector<F> eval_point, F eval, s
     {
         printf("Error in %s\n", key);
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     return P;
 }
@@ -845,6 +863,8 @@ vector<struct proof> prove_convolution(struct convolution_layer conv, vector<F> 
     {
         printf("Error in gkr product\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     F sum1;
 
@@ -881,6 +901,8 @@ vector<struct proof> prove_convolution(struct convolution_layer conv, vector<F> 
     {
         printf("Error in fft X false claim\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     F inverse = (F(1) - Pr.randomness[0][Pr.randomness[0].size() - 1]).inv();
 
@@ -914,6 +936,8 @@ void prove_division(vector<vector<F>> quotient, vector<vector<F>> remainder, vec
     {
         printf("Error in division\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     struct proof P;
     P.type = DIVISION_CHECK;
@@ -952,6 +976,8 @@ void prove_shift(vector<vector<F>> quotient, vector<vector<F>> remainder, vector
     {
         printf("Error in shift\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     struct proof P;
     P.type = DIVISION_CHECK;
@@ -990,7 +1016,7 @@ void prove_flattening(struct convolutional_network net, vector<F> &r, F &previou
     if (previous_sum != Pr.q_poly[0].eval(0) + Pr.q_poly[0].eval(1))
     {
         printf("Error in flatten GKR circuit\n");
-        // throw std::runtime_error("Error in proving");
+        // throw std::runtime_error("Error in proving"); while(true);
     }
 
     int input_bits = (int)log2(gkr_input.size() - 1);
@@ -1004,7 +1030,7 @@ void prove_flattening(struct convolutional_network net, vector<F> &r, F &previou
     if (Pr.vr[Pr.vr.size() - 1] != (F(1) - Pr.randomness[Pr.randomness.size() - 1][input_bits]) * previous_sum)
     {
         printf("Error in flatten GKR input\n");
-        // throw std::runtime_error("Error in proving");
+        // throw std::runtime_error("Error in proving"); while(true);
     }
 
     // r = Pr.randomness[Pr.randomness.size()-1];
@@ -1052,6 +1078,8 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
         {
             printf("Wrong quotient eval\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         F divident_eval = evaluate_vector(convert2vector(avg_data.Sum), r);
         F remainder_eval = evaluate_vector(convert2vector(avg_data.Remainder), r);
@@ -1059,6 +1087,8 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
         {
             printf("Error in avg pool\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         end = clock();
         proving_time += ((double)(end - start)) / CLOCKS_PER_SEC;
@@ -1089,6 +1119,8 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
         {
             printf("Error in avg GKR circuit\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
 
         int input_bits = (int)log2(data.size() - 1);
@@ -1103,6 +1135,8 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
         {
             printf("Error in avg GKR input\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         // r = Pr.randomness[Pr.randomness.size()-1];
     }
@@ -1111,6 +1145,8 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
 
         printf("EXIT\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
         prove_shift(avg_data.Out, avg_data.Remainder, avg_data.Out_temp, r, previous_sum);
 
         string filename = "flatten";
@@ -1130,6 +1166,8 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
         {
             printf("Error in flatten GKR circuit\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
 
         int input_bits = (int)log2(data.size() - 1);
@@ -1144,6 +1182,8 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
         {
             printf("Error in flatten GKR input\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
 
         r = Pr.randomness[Pr.randomness.size() - 1];
@@ -1166,7 +1206,7 @@ void prove_avg(struct avg_layer avg_data, vector<F> &r, F &previous_sum, int poo
          F divident_sum = evaluate_vector(convert2vector(avg_data.Out_temp),r1);
          if(divident_sum != remainder_sum + previous_sum*divisor){
              printf("Error in shift\n");
-             throw std::runtime_error("Error in proving");
+             throw std::runtime_error("Error in proving"); while(true);
          }
 
          Pr.type = DIVISION_CHECK;
@@ -1386,6 +1426,8 @@ vector<struct proof> prove_relu(struct relu_layer relu_data, vector<F> &r, F &pr
     {
         printf("Error in Relu1\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     Transcript.push_back(P1);
 
@@ -1397,6 +1439,8 @@ vector<struct proof> prove_relu(struct relu_layer relu_data, vector<F> &r, F &pr
     {
         printf("Error in Relu2\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     r2.insert(r2.begin(), r.begin(), r.end());
     vector<F> bits_beta;
@@ -1407,6 +1451,8 @@ vector<struct proof> prove_relu(struct relu_layer relu_data, vector<F> &r, F &pr
     {
         printf("Error in Relu3\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
 
     r2.clear();
@@ -1426,6 +1472,8 @@ vector<struct proof> prove_relu(struct relu_layer relu_data, vector<F> &r, F &pr
     {
         printf("Error in Relu4\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     proof P5 = generate_2product_sumcheck_proof(v2, out_powers, P3.randomness[0][8 + r.size() - 1]);
     P5.type = MATMUL_PROOF;
@@ -1483,6 +1531,8 @@ void prove_relu_backprop(struct relu_layer_backprop relu_data, vector<F> &r, F &
     {
         printf("Error in GKR Relu\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     vector<F> r1;
     int gkr_final = temp.randomness.size() - 1;
@@ -1494,6 +1544,8 @@ void prove_relu_backprop(struct relu_layer_backprop relu_data, vector<F> &r, F &
     {
         printf("Error in GKR input Relu\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     r = r1;
     previous_sum = evaluate_vector(relu_data.dx_prev, r1); //*(F(1) - temp.randomness[gkr_final][temp.randomness[gkr_final].size()-1]);
@@ -1552,6 +1604,8 @@ void prove_feedforward(struct convolutional_network net)
         {
             printf("Error\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         Proofs = prove_relu(net.relus[relu_counter], r, previous_sum);
         relu_counter--;
@@ -1629,6 +1683,8 @@ void prove_convolution_backprop(struct convolution_layer_backprop conv_back, str
     {
         printf("Error in product gkr back propagation\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     r = P.randomness[P.randomness.size() - 1];
     vector<F> r2;
@@ -1654,7 +1710,7 @@ void prove_convolution_backprop(struct convolution_layer_backprop conv_back, str
     F aux_sum = evaluate_vector(convert2vector(conv_back.fft_rot_W), r2);
     // if(P.vr[P.vr.size()-1] != prod*previous_sum + (F(1) - r[r.size()-1])*aux_sum){
     //	printf("Error in prod input\n");
-    //	throw std::runtime_error("Error in proving");
+    //	throw std::runtime_error("Error in proving"); while(true);
     // }
     P = prove_fft_matrix(conv_back.pad_der, r1, previous_sum);
     Transcript.push_back(P);
@@ -1672,6 +1728,8 @@ void prove_convolution_backprop(struct convolution_layer_backprop conv_back, str
     {
         printf("Error in fft input\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
 
     previous_sum = evaluate_vector(convert2vector(conv_back.pad_der), r);
@@ -1697,6 +1755,8 @@ void prove_convolution_backprop(struct convolution_layer_backprop conv_back, str
     {
         printf("Error in padding output\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
 
     F inverse = (F(1) - P.randomness[P.randomness.size() - 1][P.randomness[P.randomness.size() - 1].size() - 1]).inv();
@@ -1713,6 +1773,8 @@ void prove_convolution_backprop(struct convolution_layer_backprop conv_back, str
     {
         printf("Error in padding input\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
 }
 
@@ -1725,6 +1787,8 @@ void prove_avg_backprop(struct avg_layer_backprop avg_data, struct convolution_l
     {
         printf("ERRROR\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
 
     gkr_input = convert2vector(avg_data.der_prev);
@@ -1751,6 +1815,8 @@ void prove_avg_backprop(struct avg_layer_backprop avg_data, struct convolution_l
     {
         printf("Error in avg circuit\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     r.clear();
     for (int i = 0; i < (int)log2(convert2vector(avg_data.der_prev).size()); i++)
@@ -1762,6 +1828,8 @@ void prove_avg_backprop(struct avg_layer_backprop avg_data, struct convolution_l
     {
         printf("Error in avg circuit input\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
 }
 
@@ -1820,6 +1888,8 @@ void prove_correct_gradient_computation(struct convolution_layer_backprop conv_b
     {
         printf("Error in gradient computation dot product\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     r.clear();
     for (int i = 0; i < (int)log2(convert2vector(conv_back.fft_der).size()); i++)
@@ -1877,6 +1947,8 @@ void flat_layer(struct convolutional_network net, struct convolution_layer_backp
     {
         printf("Error in flatten circuit backprop\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     r.clear();
     for (int i = 0; i < (int)log2(relu_backprop.dx.size()); i++)
@@ -1887,6 +1959,8 @@ void flat_layer(struct convolutional_network net, struct convolution_layer_backp
     {
         printf("Error in flat layer input\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
     previous_sum = evaluate_vector(relu_backprop.dx, r);
 }
@@ -2308,6 +2382,8 @@ SHA_witness get_sha_witness(vector<F> words)
         {
             printf("Error in word %d\n", i);
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
 
         words_bits[i] = prepare_bit_vector(buff, 32);
@@ -2347,6 +2423,8 @@ SHA_witness get_sha_witness(vector<F> words)
         {
             printf("Error in word %d\n", i);
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         // printf("OK %d,%d,%d,%lld,%lld\n",i,buff.size(),words.size(),1ULL<<32, words[i].toint128());
         words_bits[i] = prepare_bit_vector(buff, 32);
@@ -2354,6 +2432,8 @@ SHA_witness get_sha_witness(vector<F> words)
         {
             printf("Error in witness 0\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         buff.clear();
     }
@@ -2396,6 +2476,8 @@ SHA_witness get_sha_witness(vector<F> words)
         {
             printf("Error in witness 1\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         F maj = F(0);
         for (int j = 0; j < 32; j++)
@@ -2417,6 +2499,8 @@ SHA_witness get_sha_witness(vector<F> words)
         {
             printf("Error in witness 1\n");
             throw std::runtime_error("Error in proving");
+            while (true)
+                ;
         }
         w1 = rotate(e_bits[i], 6);
         w2 = rotate(e_bits[i], 11);
@@ -2836,8 +2920,56 @@ struct convolutional_network deep_copy_network(const struct convolutional_networ
     return new_net;
 }
 
+void convert_MNIST(const mnist::MNIST_dataset<vector, vector<uint8_t>, uint8_t> &dataset,
+                   vector<vector<vector<vector<F>>>> &X,
+                   vector<F> &L)
+{
+    // 获取图像的数量和原始图像尺寸
+    size_t num_images = dataset.training_images.size();
+    size_t original_width = 28;  // MNIST 原始图像宽度
+    size_t original_height = 28; // MNIST 原始图像高度
+    size_t target_width = 32;    // 调整后的图像宽度
+    size_t target_height = 32;   // 调整后的图像高度
+    size_t channels = 1;         // 单通道（灰度图像）
+
+    // 初始化目标数据结构，调整为 batch x channel x target_height x target_width
+    X.resize(num_images, vector<vector<vector<F>>>(channels, vector<vector<F>>(target_height, vector<F>(target_width, F(0)))));
+    L.resize(num_images);
+
+    // 遍历每张图像
+    for (size_t i = 0; i < num_images; ++i)
+    {
+        // 获取当前图像和标签
+        const auto &image = dataset.training_images[i];
+        uint8_t label = dataset.training_labels[i];
+
+        // 计算零填充的起始位置（上下左右各填充 2 像素）
+        size_t padding = (target_width - original_width) / 2;
+
+        // 将图像的每个像素值转换为四维数组（batch x channel x target_height x target_width）
+        for (size_t h = 0; h < original_height; ++h)
+        {
+            for (size_t w = 0; w < original_width; ++w)
+            {
+                size_t index = h * original_width + w; // 计算当前像素的索引
+                // 将像素值存储到四维数组中，放置在中心位置
+                X[i][0][h + padding][w + padding] = static_cast<F>(image[index]); // 转换为 F 类型
+            }
+        }
+
+        // 将标签存储到标签数组中
+        L[i] = static_cast<F>(label); // 转换为 F 类型
+    }
+}
+
 int main(int argc, char *argv[])
 {
+    mnist::MNIST_dataset<std::vector, std::vector<uint8_t>, uint8_t> dataset =
+        mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>(MNIST_DATA_LOCATION, 16, 16);
+    vector<vector<vector<vector<F>>>> X;
+    vector<F> L;
+    vector<vector<F>> out_der;
+    convert_MNIST(dataset, X, L);
 
     int first_edit = 1;
     // (!) Initializes elliptic curves, hash functions, and sets up parameters for the polynomial commitment scheme.
@@ -2853,13 +2985,10 @@ int main(int argc, char *argv[])
 
     int input_dim;
 
-    char buff[257];
-    vector<vector<vector<vector<F>>>> X;
-    vector<F> r;
     int model;
 
     // prove_bulletproof_verification(atoi(argv[1]));
-    // throw std::runtime_error("Error in proving");
+    // throw std::runtime_error("Error in proving"); while(true);
 
     // (!) Parses command-line arguments to select the neural network model (LENET, AlexNet, VGG, etc.).
     // (!) Sets input dimensions and model type based on the selection.
@@ -2897,15 +3026,17 @@ int main(int argc, char *argv[])
     {
         printf("Invalid Neural network\n");
         throw std::runtime_error("Error in proving");
+        while (true)
+            ;
     }
-    int Batch = atoi(argv[2]);
+    int Batch = 16;
     int channels = atoi(argv[3]);
     levels = atoi(argv[4]);
     PC_scheme = atoi(argv[5]);
 
     // test_aggregation(levels,channels);
     // printf("Batch size : %d\n", Batch);
-    // throw std::runtime_error("Error in proving");
+    // throw std::runtime_error("Error in proving"); while(true);
 
     // (?) What size of batches are we talking about?
 
@@ -2918,72 +3049,72 @@ int main(int argc, char *argv[])
 
     for (int epoch = 0; epoch < num_epochs; ++epoch)
     {
-        try
-        {
-            printf("\n=== Epoch %d ===\n", epoch + 1);
-            printf("Backing up network state for epoch %d...\n", epoch + 1);
-            // 模拟输入数据
-            vector<vector<vector<vector<F>>>> X;
-            network_backups.push_back(deep_copy_network(net));
-            // 前向传播和反向传播
-            printf("Running feed forward and backpropagation...\n");
-            clock_t start, end;
-            net = feed_forward(X, net, channels);
-            net = back_propagation(net);
-            if (epoch == 2 && first_edit)
-            { // 模拟恶意行为
-                first_edit = 0;
-                printf("Modifying network parameters for testing...\n");
-                printf("%d\n", net.final_w);
-                net.final_w = 2;
-            }
-            // (!) Calls get_witness() to extract the witness data from the network
-            // (!) Calls get_model() to get the model parameters.
-            // (!) Combines witness and model data into a single vector.
-
-            vector<F> witness;
-            vector<F> new_model;
-            vector<vector<F>> witness_matrix, model_matrix;
-            vector<commitment> comm(2);
-
-            proving_time = 0.0;
-
-            get_witness(net, witness);
-            get_model(net, new_model);
-            witness.insert(witness.end(), new_model.begin(), new_model.end());
-            pad_vector(witness);
-
-            printf("Witness size : %d\n", witness.size());
-
-            // (!) Calls poly_commit() to create a polynomial commitment of the witness data.
-
-            poly_commit(witness, witness_matrix, comm[0], levels);
-            float commitment_time = proving_time;
-            printf("Commit size : %d, Commit time : %lf\n", witness.size(), new_model.size(), proving_time);
-            proving_time = 0.0;
-
-            // (!) Calls prove_feedforward() and prove_backprop() to generate proofs for the forward and backward passes.
-            clock_t wc1, wc2;
-            wc1 = clock();
-            prove_feedforward(net);
-            prove_backprop(net);
-            wc2 = clock();
-            proving_time = 0.0;
-            clean_model(net);
-            // 记录每轮的证明时间和证明大小
-            printf("Epoch %d - Proving time: %lf\n", epoch + 1, proving_time);
-            printf("Epoch %d - Proof size: %lf\n", epoch + 1, proof_size(Transcript));
+        // try
+        // {
+        printf("\n=== Epoch %d ===\n", epoch + 1);
+        printf("Backing up network state for epoch %d...\n", epoch + 1);
+        // 模拟输入数据
+        network_backups.push_back(deep_copy_network(net));
+        // 前向传播和反向传播
+        printf("Running feed forward and backpropagation...\n");
+        clock_t start, end;
+        net = feed_forward(X, net, channels);
+        out_der = compute_loss_and_gradients(net.fully_connected.back().Z_new, L);        
+        net = back_propagation(net, out_der);
+        if (epoch == 2 && first_edit)
+        { // 模拟恶意行为
+            first_edit = 0;
+            printf("Modifying network parameters for testing...\n");
+            printf("%d\n", net.final_w);
+            net.final_w = 2;
         }
-        catch (const std::runtime_error &e)
-        {
-            // 捕获并显示错误信息
-            std::cerr << "Error occurred during epoch " << epoch + 1 << ": " << e.what() << std::endl;
-            // 恢复网络状态
-            printf("Restoring network state from backup for epoch %d...\n", epoch + 1);
-             net = deep_copy_network(network_backups[epoch]);
-            // 重试当前 epoch
-            --epoch;
-        }
+        // (!) Calls get_witness() to extract the witness data from the network
+        // (!) Calls get_model() to get the model parameters.
+        // (!) Combines witness and model data into a single vector.
+
+        vector<F> witness;
+        vector<F> new_model;
+        vector<vector<F>> witness_matrix, model_matrix;
+        vector<commitment> comm(2);
+
+        proving_time = 0.0;
+
+        get_witness(net, witness);
+        get_model(net, new_model);
+        witness.insert(witness.end(), new_model.begin(), new_model.end());
+        pad_vector(witness);
+
+        printf("Witness size : %d\n", witness.size());
+
+        // (!) Calls poly_commit() to create a polynomial commitment of the witness data.
+
+        poly_commit(witness, witness_matrix, comm[0], levels);
+        float commitment_time = proving_time;
+        printf("Commit size : %d, Commit time : %lf\n", witness.size(), new_model.size(), proving_time);
+        proving_time = 0.0;
+
+        // (!) Calls prove_feedforward() and prove_backprop() to generate proofs for the forward and backward passes.
+        clock_t wc1, wc2;
+        wc1 = clock();
+        prove_feedforward(net);
+        prove_backprop(net);
+        wc2 = clock();
+        proving_time = 0.0;
+        clean_model(net);
+        // 记录每轮的证明时间和证明大小
+        printf("Epoch %d - Proving time: %lf\n", epoch + 1, proving_time);
+        printf("Epoch %d - Proof size: %lf\n", epoch + 1, proof_size(Transcript));
+        // }
+        // catch (const std::runtime_error &e)
+        // {
+        //     // 捕获并显示错误信息
+        //     std::cerr << "Error occurred during epoch " << epoch + 1 << ": " << e.what() << std::endl;
+        //     // 恢复网络状态
+        //     printf("Restoring network state from backup for epoch %d...\n", epoch + 1);
+        //      net = deep_copy_network(network_backups[epoch]);
+        //     // 重试当前 epoch
+        //     --epoch;
+        // }
     }
 
     printf("\nTraining and proving completed for %d epochs.\n", num_epochs);

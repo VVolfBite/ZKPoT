@@ -175,6 +175,30 @@ main/fast:
 	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+123.o: 123.cpp.o
+.PHONY : 123.o
+
+# target to build an object file
+123.cpp.o:
+	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/123.cpp.o
+.PHONY : 123.cpp.o
+
+123.i: 123.cpp.i
+.PHONY : 123.i
+
+# target to preprocess a source file
+123.cpp.i:
+	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/123.cpp.i
+.PHONY : 123.cpp.i
+
+123.s: 123.cpp.s
+.PHONY : 123.s
+
+# target to generate assembly for a file
+123.cpp.s:
+	cd /home/vvolfbite/Documents/kaizen/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/123.cpp.s
+.PHONY : 123.cpp.s
+
 CNN.o: CNN.cpp.o
 .PHONY : CNN.o
 
@@ -716,6 +740,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... 123.o"
+	@echo "... 123.i"
+	@echo "... 123.s"
 	@echo "... CNN.o"
 	@echo "... CNN.i"
 	@echo "... CNN.s"

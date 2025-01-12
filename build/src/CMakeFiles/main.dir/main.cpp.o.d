@@ -408,4 +408,6 @@ src/CMakeFiles/main.dir/main.cpp.o: \
  /home/vvolfbite/Documents/kaizen/src/flo-shani.h \
  /home/vvolfbite/Documents/kaizen/src/../lib/libXKCP.a.headers/SimpleFIPS202.h \
  /home/vvolfbite/Documents/kaizen/src/../lib/libXKCP.a.headers/config.h \
- /home/vvolfbite/Documents/kaizen/src/lookups.h
+ /home/vvolfbite/Documents/kaizen/src/lookups.h \
+ /home/vvolfbite/Documents/kaizen/src/mnist/mnist_reader.hpp \
+ /home/vvolfbite/Documents/kaizen/src/mnist/mnist_reader_common.hpp

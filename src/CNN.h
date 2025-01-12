@@ -147,9 +147,10 @@ struct convolutional_network{
 };
 
 
-struct convolutional_network back_propagation( struct convolutional_network net);
+struct convolutional_network back_propagation( struct convolutional_network net, vector<vector<F>> &out_der);
 struct convolution_layer_backprop conv_backprop(vector<vector<vector<vector<F>>>> &derr,vector<vector<vector<vector<F>>>> &dx, struct convolution_layer conv, vector<vector<vector<vector<F>>>> rotated_Filter);
 struct convolution_layer conv(vector<vector<vector<vector<F>>>> input, int fchout,int fchin, int fw);
 struct relu_layer _relu_layer(vector<F> input);
 struct convolutional_network feed_forward(vector<vector<vector<vector<F>>>> &X, struct convolutional_network net,int channels);
 struct convolutional_network init_network(int model,int Batch_size, int channels);
+vector<vector<F>> compute_loss_and_gradients(const vector<vector<F>>& output, const vector<F>& labels);
